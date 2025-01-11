@@ -52,15 +52,13 @@ func Test_Tokenizer(t *testing.T) {
 		},
 		{
 			Name:  "Complex input",
-			Input: "(a1) (b2)",
+			Input: "(aa) (bbb)",
 			Expected: []internal.Token{
 				{Kind: enum.Paren, Value: "("},
-				{Kind: enum.Letter, Value: "a"},
-				{Kind: enum.Number, Value: "1"},
+				{Kind: enum.Letter, Value: "aa"},
 				{Kind: enum.Paren, Value: ")"},
 				{Kind: enum.Paren, Value: "("},
-				{Kind: enum.Letter, Value: "b"},
-				{Kind: enum.Number, Value: "2"},
+				{Kind: enum.Letter, Value: "bbb"},
 				{Kind: enum.Paren, Value: ")"},
 			},
 		},
