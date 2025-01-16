@@ -4,19 +4,20 @@ import (
 	"log"
 	"testing"
 	"tiny-compiler/internal"
+	"tiny-compiler/pkg/types"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func TestParser(t *testing.T) {
 	tokens := internal.Tokenizer("(add 2 (subtract 4 2))")
-	expected := internal.AST{
+	expected := types.AST{
 		Kind: "Program",
-		Body: []internal.Node{
+		Body: []types.Node{
 			{
 				Kind: "CallExpression",
 				Name: "add",
-				Params: []internal.Node{
+				Params: []types.Node{
 					{
 						Kind:  "NumberLiteral",
 						Value: "2",
@@ -24,7 +25,7 @@ func TestParser(t *testing.T) {
 					{
 						Kind: "CallExpression",
 						Name: "subtract",
-						Params: []internal.Node{
+						Params: []types.Node{
 							{
 								Kind:  "NumberLiteral",
 								Value: "4",

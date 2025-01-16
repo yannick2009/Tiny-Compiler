@@ -4,6 +4,7 @@ import (
 	"testing"
 	"tiny-compiler/internal"
 	"tiny-compiler/pkg/enum"
+	"tiny-compiler/pkg/types"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -12,38 +13,38 @@ func Test_Tokenizer(t *testing.T) {
 	data := []struct {
 		Name     string
 		Input    string
-		Expected []internal.Token
+		Expected []types.Token
 	}{
 		{
 			Name:     "Empty input",
 			Input:    "",
-			Expected: []internal.Token{},
+			Expected: []types.Token{},
 		},
 		{
 			Name:  "Single parenthesis",
 			Input: "(",
-			Expected: []internal.Token{
+			Expected: []types.Token{
 				{Kind: enum.Paren, Value: "("},
 			},
 		},
 		{
 			Name:  "Single letter",
 			Input: "a",
-			Expected: []internal.Token{
+			Expected: []types.Token{
 				{Kind: enum.Letter, Value: "a"},
 			},
 		},
 		{
 			Name:  "Single number",
 			Input: "1",
-			Expected: []internal.Token{
+			Expected: []types.Token{
 				{Kind: enum.Number, Value: "1"},
 			},
 		},
 		{
 			Name:  "Multiple tokens",
 			Input: "(a1)",
-			Expected: []internal.Token{
+			Expected: []types.Token{
 				{Kind: enum.Paren, Value: "("},
 				{Kind: enum.Letter, Value: "a"},
 				{Kind: enum.Number, Value: "1"},
@@ -53,7 +54,7 @@ func Test_Tokenizer(t *testing.T) {
 		{
 			Name:  "Complex input",
 			Input: "(aa) (bbb)",
-			Expected: []internal.Token{
+			Expected: []types.Token{
 				{Kind: enum.Paren, Value: "("},
 				{Kind: enum.Letter, Value: "aa"},
 				{Kind: enum.Paren, Value: ")"},

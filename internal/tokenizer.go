@@ -2,16 +2,12 @@ package internal
 
 import (
 	"tiny-compiler/pkg/enum"
+	"tiny-compiler/pkg/types"
 	"tiny-compiler/pkg/utils"
 )
 
-type Token struct {
-	Kind  enum.TokenType
-	Value string
-}
-
-func newToken(kind enum.TokenType, value string) Token {
-	return Token{Kind: kind, Value: value}
+func newToken(kind enum.TokenType, value string) types.Token {
+	return types.Token{Kind: kind, Value: value}
 }
 
 /*
@@ -22,13 +18,13 @@ The token types are defined in the TokenType enum, and the function creates a To
 The function then appends the Token struct to the Tokens slice and continues to the next character.
 The function returns the Tokens slice once it has processed the entire input string.
 */
-func Tokenizer(input string) []Token {
+func Tokenizer(input string) []types.Token {
 	if input == "" {
-		return []Token{}
+		return []types.Token{}
 	}
-	
+
 	input += "\n"
-	var Tokens []Token
+	var Tokens []types.Token
 	inputArr := []rune(input)
 	currentPos := 0
 
